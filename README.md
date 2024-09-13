@@ -22,11 +22,21 @@ git clone https://github.com/iitaku/submodule-parent.git
 git submodule update --init --recursive
 ```
 
-submodule-parent の最新のmainブランチに追従し、サブモジュールも最新の状態にする
+submodule-parent の最新のmainブランチをpullしてサブモジュールも最新の状態にする
 ```
-git submoudle update
+git pull origin main
+git submodule update
 ```
 
 サブモジュールの子側の変更を親側に取り込む
-
-
+```
+cd child
+<なにか変更する>
+git add .
+git commit -m "Updated"
+git push origin main # <-- submodule-child の push
+cd ..
+git add child
+git commit -m "Updated child"
+git push origin main # <-- submodule-parent の push
+```
